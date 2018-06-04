@@ -1,5 +1,6 @@
-
+from django.http import HttpResponse
 from django.shortcuts import render
+from .models import Post
 
 
 def post_list(request):
@@ -16,4 +17,12 @@ def post_list(request):
     # 가져온 문자열 돌려주기
     # return HttpResponse(html)
 
-    return render(request, 'blog/post_list.html')
+    result = '글 목록<br>'
+
+    for post in Post.objects.all():
+        result += '{}<br>'.format(post.title)
+
+    return HttpResponse(result)
+
+
+
