@@ -10,16 +10,16 @@
 <body>
     <h1>Dango Girls Blog</h1>
 
-    <div>
-        <p>published: 04.06.2018, 12:14</p>
-        <h2>My First Post</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aperiam, asperiores consequuntur deleniti earum, eveniet expedita explicabo illo incidunt libero, quaerat tenetur. Aliquid at aut corporis cupiditate doloribus ducimus eum itaque iusto, maxime nihil possimus praesentium quidem, quo tenetur voluptatum.</p>
-    </div>
-    <div>
-        <p>published: 04.06.2018, 12:15</p>
-        <h2>My second Post</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aperiam, asperiores consequuntur deleniti earum, eveniet expedita explicabo illo incidunt libero, quaerat tenetur. Aliquid at aut corporis cupiditate doloribus ducimus eum itaque iusto, maxime nihil possimus praesentium quidem, quo tenetur voluptatum.</p>
-    </div>
+    {% for post in posts %}
+        <div>
+            <p>published: {{post.published_date}}</p>
+            <h2>{{post.title}}</h2>
+            <p>{{post.text}}}</p>
+        </div>
+    {% endfor %}
+
+
+
 </body>
 </html>
 

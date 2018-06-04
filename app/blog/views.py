@@ -17,12 +17,20 @@ def post_list(request):
     # 가져온 문자열 돌려주기
     # return HttpResponse(html)
 
-    result = '글 목록<br>'
-
-    for post in Post.objects.all():
-        result += '{}<br>'.format(post.title)
-
-    return HttpResponse(result)
-
+    # result = '글 목록<br>'
+    #
+    # for post in Post.objects.all():
+    #     result += '{}<br>'.format(post.title)
+    #
+    # return HttpResponse(result)
+    posts = Post.objects.all()
+    context = {
+        'posts': posts
+    }
+    # render는 주어진 1,2번째 인수를 사용해서
+    # 1번째 인수: HttpRequest 인스턴스
+    # 2번째 인수: 문자열 (TEMPLATE['DIRS']를 기준으로 탐색할 템플릿 파일의 경로)
+    # 3번쨰 인수: 템플릿을 렌더링 할때 사용할 객체 모음
+    return render(request, 'blog/post_list.html', context)
 
 
