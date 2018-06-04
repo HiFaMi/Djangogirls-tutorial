@@ -1,7 +1,5 @@
-import os
 
-from django.http import HttpResponse
-from django.template.loader import render_to_string
+from django.shortcuts import render
 
 
 def post_list(request):
@@ -14,6 +12,8 @@ def post_list(request):
     # html = open(third_dir, 'rt').read()
 
     # 경로에 해당하는 HTML파일을 문자열로 로드
-    html = render_to_string('blog/post_list.html')
+    # html = render_to_string('blog/post_list.html')
     # 가져온 문자열 돌려주기
-    return HttpResponse(html)
+    # return HttpResponse(html)
+
+    return render(request, 'blog/post_list.html')
