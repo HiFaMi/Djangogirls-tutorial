@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
-from django.http import HttpResponse
-from django.shortcuts import render
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, redirect
 from .models import Post
 
 
@@ -24,7 +24,7 @@ def post_list(request):
     #     result += '{}<br>'.format(post.title)
     #
     # return HttpResponse(result)
-    posts = Post.objects.all()
+    posts = Post.objects.order_by('-id')
     context = {
         'posts': posts
     }
@@ -49,7 +49,7 @@ def post_create(request):
         new_text = request.POST.get('text')
         user = User.objects.get(username='mingyu')
         new_post = Post.objects.create(author=user, title=new_title, text=new_text)
-        return HttpResponse('id:{},title:{}, text:{}'.format(new_post.id, new_post.title, new_post.text))
+        return redirect('post-list')
 
     else:
         return render(request, 'blog/post_create.html')
