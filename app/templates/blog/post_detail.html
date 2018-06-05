@@ -10,12 +10,14 @@
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
 </head>
 <body>
-
-    <div class="card mb-4">
-        <div class="card-body">
-            <h5 class="card-title">{{post}}</h5>
-            <h6 class="card-subtitle text-muted mb-3 text-right">published: {{post.published_date}}</h6>
-            <p class="card-text">{{post.text}}</p>
+    <div class="container">
+        <h1>Dango Girls Blog</h1>
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">{{post}}</h5>
+                <h6 class="card-subtitle text-muted mb-3 text-right">published: {{post.published_date}}</h6>
+                <p class="card-text">{{post.text|linebreaksbr}}</p>
+            </div>
         </div>
     </div>
 </body>
