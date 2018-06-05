@@ -17,8 +17,10 @@
 </head>
 <body>
     <div class="container">
-        <a href="{% url 'post-list' %}"><h1>Dango Girls Blog</h1></a>
-
+        <h1><a href="{% url 'post-list' %}">Dango Girls Blog</a></h1>
+        <div class="text-right mb-2">
+            <a class="btn btn-primary" href="{% url 'post-create' %}">글 쓰기</a>
+        </div>
         {% block content %}
         {%  endblock %}
     </div>

@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import render
 from .models import Post
@@ -40,3 +41,15 @@ def post_detail(request, post_id):
         'post': post,
     }
     return render(request, 'blog/post_detail.html', context)
+
+
+def post_create(request):
+    if request.method == 'POST':
+        new_title = request.POST.get('title')
+        new_text = request.POST.get('text')
+        user = User.objects.get(username='mingyu')
+        new_post = Post.objects.create(author=user, title=new_title, text=new_text)
+        return HttpResponse('id:{},title:{}, text:{}'.format(new_post.id, new_post.title, new_post.text))
+
+    else:
+        return render(request, 'blog/post_create.html')
