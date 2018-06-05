@@ -6,6 +6,6 @@ urlpatterns = [
     # url의 두 번째 인자: view function
     #   view function
     #   ->  request를 받아서 response를 돌려주는 함수
-    url(r'^$', post_list),
-    url(r'^(\d)+/', post_detail),
+    url(r'^$', post_list, name='post-list'),
+    url(r'^(\d+)', post_detail, name='post-detail'),
 ]
