@@ -62,3 +62,46 @@ def post_delete(request, post_id):
 
     return redirect('post-list')
 
+
+def post_edit(request, post_id):
+    post = Post.objects.get(id=post_id)
+    if request.method == 'POST':
+        title = request.POST['title']
+        text = request.POST['text']
+
+        post.title = title
+        post.text = text
+        post.save()
+
+        return redirect('post-detail', post.id)
+
+
+def post_edit_create(request, post_id=None):
+    def edit_process(post):
+        post.title = title
+        post.text = text
+        post.save()
+        return redirect('post-detail', post.id)
+
+    def create_process(title, text):
+        Post.objects.create(
+            author=request.user,
+            title=title,
+            text=text,
+        )
+        return redirect('post-list')
+
+    context = {}
+    if post_id:
+        context['post'] = Post.objects.get(id=post_id)
+
+    if request.method == 'POST':
+        post = context.get('post')
+        title = request.POST['title']
+        text = request.POST['text']
+        if post:
+            return edit_process(post)
+        else:
+            return create_process(title, text)
+    return render(request, 'blog/post_edit_create.html', context)
+
